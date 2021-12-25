@@ -1,24 +1,50 @@
-# crs
+###### cms管理系统传给h5的数据格式
 
-## Project setup
-```
-yarn install
-```
+**pageChange事件**
 
-### Compiles and hot-reloads for development
 ```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
+{
+  id: '',
+  name: '页面标题',
+  desc: '',
+  backgroundColor: '',
+  backgroundImage: '',
+  backgroundPosition: 'top',
+  cover: '',
+  componentList: []
+}
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+**setPreview事件**
+index
+
+**setActive事件**
+index
+
+###### h5传给cms的数据格式
+
+**setActive**
+index
+
+**pageChange**
+
+```
+{
+  id: '',
+  name: '页面标题',
+  desc: '',
+  backgroundColor: '',
+  backgroundImage: '',
+  backgroundPosition: 'top',
+  cover: '',
+  componentList: []
+}
+```
+
+**pageHeightChange**
+```
+{
+  height: '',
+  componentsTopList: []
+}
+```
