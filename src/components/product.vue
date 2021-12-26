@@ -1,7 +1,9 @@
 <template>
   <div class="product-container">
     <template v-if="property.listStyle == 'listDetail'">
-      <div v-for="item in productList" :key="item.jvId" class="productItem" :class="property.listStyle">
+      <div v-for="item in productList" :key="item.jvId" class="productItem"
+           :class="property.listStyle"
+      >
         <van-image
           width="114"
           height="114"
@@ -9,18 +11,26 @@
         />
         <div class="content">
           <div class="product-info">
-            <p class="title">{{item.jvBrand}}</p>
-            <p class="description">{{item.jvCategoryNames}}</p>
+            <p class="title">
+              {{ item.jvBrand }}
+            </p>
+            <p class="description">
+              {{ item.jvCategoryNames }}
+            </p>
           </div>
           <div class="flex-box">
-            <div :style="priceStyle" class="price"><span>¥</span><span class="big">{{item.listPrice}}</span></div>
-            <div v-if="property.purchase === 1" class="iconfont icon-shangpingoumai"></div>
+            <div :style="priceStyle" class="price">
+              <span>¥</span><span class="big">{{ item.listPrice }}</span>
+            </div>
+            <div v-if="property.purchase === 1" class="iconfont icon-shangpingoumai" />
           </div>
         </div>
       </div>
     </template>
     <template v-if="property.listStyle == 'oneLineOne'">
-      <div v-for="item in productList" :key="item.jvId" class="productItem" :class="property.listStyle">
+      <div v-for="item in productList" :key="item.jvId" class="productItem"
+           :class="property.listStyle"
+      >
         <van-image
           width="100%"
           height="210"
@@ -28,19 +38,27 @@
         />
         <div class="content">
           <div class="product-info">
-            <p class="title">{{item.jvBrand}}</p>
-            <p class="description">{{item.jvCategoryNames}}</p>
+            <p class="title">
+              {{ item.jvBrand }}
+            </p>
+            <p class="description">
+              {{ item.jvCategoryNames }}
+            </p>
           </div>
           <div class="flex-box">
-            <div :style="priceStyle" class="price"><span>¥</span><span class="big">{{item.listPrice}}</span></div>
-            <div v-if="property.purchase === 1" class="iconfont icon-shangpingoumai"></div>
+            <div :style="priceStyle" class="price">
+              <span>¥</span><span class="big">{{ item.listPrice }}</span>
+            </div>
+            <div v-if="property.purchase === 1" class="iconfont icon-shangpingoumai" />
           </div>
         </div>
       </div>
     </template>
     <template v-if="property.listStyle == 'oneLineTwo'">
       <div style="padding: 12px;display:flex;justify-content:space-between;flex-wrap:wrap">
-        <div v-for="item in productList" :key="item.jvId" class="productItem" :class="property.listStyle">
+        <div v-for="item in productList" :key="item.jvId" class="productItem"
+             :class="property.listStyle"
+        >
           <van-image
             width="160"
             height="100"
@@ -48,12 +66,18 @@
           />
           <div class="content">
             <div class="product-info">
-              <p class="title">{{item.jvBrand}}</p>
-              <p class="description">{{item.jvCategoryNames}}</p>
+              <p class="title">
+                {{ item.jvBrand }}
+              </p>
+              <p class="description">
+                {{ item.jvCategoryNames }}
+              </p>
             </div>
             <div class="flex-box">
-              <div :style="priceStyle" class="price"><span>¥</span><span class="big">{{item.listPrice}}</span></div>
-              <div v-if="property.purchase === 1" class="iconfont icon-shangpingoumai"></div>
+              <div :style="priceStyle" class="price">
+                <span>¥</span><span class="big">{{ item.listPrice }}</span>
+              </div>
+              <div v-if="property.purchase === 1" class="iconfont icon-shangpingoumai" />
             </div>
           </div>
         </div>
@@ -78,12 +102,7 @@ export default {
   data () {
     return {
       productList: PRODUCTDEFAULT,
-      priceStyle: {},
-    }
-  },
-  mounted () {
-    if (this.property.productList.length) {
-
+      priceStyle: {}
     }
   },
   watch: {
@@ -104,6 +123,11 @@ export default {
       } else {
         this.productList = PRODUCTDEFAULT
       }
+    }
+  },
+  mounted () {
+    if (this.property.productList.length) {
+
     }
   }
 }

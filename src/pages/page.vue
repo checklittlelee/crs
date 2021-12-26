@@ -68,8 +68,8 @@ export default {
       this.$store.commit('changeComponentPosition', {newIndex, oldIndex, element})
     },
     onEnd(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault()
+      e.stopPropagation()
     },
     ...mapMutations(
       [

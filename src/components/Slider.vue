@@ -2,7 +2,9 @@
   <div>
     <div ref="wrapper" class="my-slider" :style="boxStyle">
       <ul ref="cont" class="cont" :style="isDefaultStyle?defaultItemStyle:itemStyle">
-        <li v-for="(item,i) in imageList " :key="i" class="cont-item" @click="jumpLink(item.link)">
+        <li v-for="(item,i) in imageList " :key="i" class="cont-item"
+            @click="jumpLink(item.link)"
+        >
           <div class="cont-img" :style="i===0?'':isDefaultStyle?defaultImgStyle:imgStyle">
             <van-image
               style="height:80px;"
@@ -42,28 +44,39 @@ export default {
       radius: 0,
       scroll: null, // 滑动对象
       imageList: [{
-              link: null,
-              imageUrl: '',
-              text: '图片1'
-            },
-            {
-              link: null,
-              imageUrl: '',
-              text: '图片2'
-            },
-            {
-              link: null,
-              imageUrl: '',
-              text: '图片3'
-            }], // 图片列表
+        link: null,
+        imageUrl: '',
+        text: '图片1'
+      },
+      {
+        link: null,
+        imageUrl: '',
+        text: '图片2'
+      },
+      {
+        link: null,
+        imageUrl: '',
+        text: '图片3'
+      }], // 图片列表
       imgStyle: {},
       itemStyle: {},
-      boxStyle:{},
+      boxStyle: {},
       defaultImgStyle: {}, // 图片默认样式
       defaultItemStyle: {},
       imgHeight: 80,
       imgWidth: 100,
       defaultImg
+    }
+  },
+  watch: {
+    property: {
+      handler: function(val, oldVal) {
+        if (val) {
+          this.imageList = this.property.imageList
+          this.setMyStyle()
+        }
+      },
+      immediate: true
     }
   },
   mounted() {
@@ -85,19 +98,18 @@ export default {
       let marginLeft = '0'
       let height = this.imgHeight + 'px'
       let padding = '0'
-       this.boxStyle={backgroundColor: this.property.backgroundColor}
+      this.boxStyle = {backgroundColor: this.property.backgroundColor}
       if (!this.property.isDefaultMargin) {
         this.isDefaultStyle = false
         padding = `${this.property.padding[0]}px ${this.property.padding[1]}px` + ''
         marginLeft = `${this.property.imageMargin}px` + ''
-        console.log('this.property.backgroundColor',this.property.backgroundColor)
+        console.log('this.property.backgroundColor', this.property.backgroundColor)
         this.imgStyle = {
           marginLeft
         }
         this.itemStyle = {
           padding
         }
-        
       } else {
         this.defaultImgStyle = {marginLeft: '15px'}
         this.defaultItemStyle = {padding: '15px 15px'}
@@ -120,17 +132,6 @@ export default {
           this.scroll.refresh() // 如果dom结构发生改变调用该方法
         }
       })
-    }
-  },
-  watch:{
-    property: {
-      handler: function(val,oldVal){
-        if(val){
-          this.imageList = this.property.imageList
-          this.setMyStyle()
-        }
-      },
-      immediate: true
     }
   }
 }

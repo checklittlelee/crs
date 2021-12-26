@@ -13,20 +13,19 @@
       </div>
     </div>
     <!-- 领取券包弹出框 -->
-    <Coupon></Coupon>
+    <Coupon />
     <!-- 领取单券弹出框 -->
-    <CouponSingle></CouponSingle>
+    <CouponSingle />
   </div>
 </template>
 
 <script>
-var wx = require('weixin-js-sdk')
 import Coupon from '@/components/Coupon'
 import CouponSingle from '@/components/CouponSingle'
 import { getH5PageJson } from '@/apis/preview'
 import UserInfo from '@/utils/getUserInfo'
 import vehicle from '@/utils/vehicle'
-import VConsole from 'vconsole';
+import VConsole from 'vconsole'
 
 import Carousel from '@/components/Carousel'
 import Dialog from '@/components/Dialog'
@@ -40,10 +39,11 @@ import ImageNav from '@/components/image-nav'
 import product from '@/components/product'
 import Notice from '@/components/notice'
 import RichText from '@/components/richText'
+var wx = require('weixin-js-sdk')
 
 // 开发环境添加console插件
 if (process.env.NODE_ENV !== 'production') {
-  const vConsole = new VConsole();
+  const vConsole = new VConsole()
 }
 
 export default {
@@ -83,17 +83,17 @@ export default {
     const id = this.$route.query.id
     // 获取小程序传递的数据
     let data = this.$route.query.data
-    if(data) {
-      data = JSON.parse(data);
-      console.log("H5活动页面加载，传入参数为", data)
-      UserInfo.SetLocalUserLoginStatus(data.isLogin);
-      UserInfo.SetToken(data.token);
-      UserInfo.SetCanToLoginStatus(true);
-      UserInfo.SetPositionAddress(data.PositionAddress);
-      UserInfo.SetCurrentAddress(data.CurrentAddress);
+    if (data) {
+      data = JSON.parse(data)
+      console.log('H5活动页面加载，传入参数为', data)
+      UserInfo.SetLocalUserLoginStatus(data.isLogin)
+      UserInfo.SetToken(data.token)
+      UserInfo.SetCanToLoginStatus(true)
+      UserInfo.SetPositionAddress(data.PositionAddress)
+      UserInfo.SetCurrentAddress(data.CurrentAddress)
       UserInfo.setOpenid(data.openId)
       UserInfo.setUserid(data.userId)
-      vehicle._saveCarToLocal(data.myCar);
+      vehicle._saveCarToLocal(data.myCar)
     }
     // 获取页面数据
     getH5PageJson({id}).then(res => {

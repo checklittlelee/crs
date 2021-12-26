@@ -1,14 +1,14 @@
 <template>
   <van-dialog v-if="isDisplay"
-    v-model="isDisplay"
-    :show-confirm-button="false"
-    class="dialog-info"
+              v-model="isDisplay"
+              :show-confirm-button="false"
+              class="dialog-info"
   >
     <div class="img-info" @click="jumpLink(link)">
       <van-image v-if="imageUrl"
-        width="100%"
-        height="100%"
-        :src="imageUrl"
+                 width="100%"
+                 height="100%"
+                 :src="imageUrl"
       />
     </div>
     <div class="close-info">
@@ -29,7 +29,7 @@ export default {
         return {}
       }
     },
-    runEnv:{
+    runEnv: {
       type: String,
       default: 'dev'
     }
@@ -67,7 +67,7 @@ export default {
       if (this.property.timing === 'every') {
         this.isDisplay = true
       } else {
-        if(this.runEnv==='dev') {//dev 为pc配置环境,preview 为pc预览环境,prod 为小程序环境
+        if (this.runEnv === 'dev') { // dev 为pc配置环境,preview 为pc预览环境,prod 为小程序环境
           this.isDisplay = true
         } else {
           const value = window.localStorage.getItem('Dialog_' + this.property.id)

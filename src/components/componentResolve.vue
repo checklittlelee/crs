@@ -8,23 +8,27 @@
           :style="styleObject"
           :class="{componentDom: true,selected: componentConfig.id === previewId}"
           :sensors="sensors"
-          :runEnv="runEnv"
+          :run-env="runEnv"
         />
       </div>
-      <div class="modal" v-if="!preview" @click="!preview?changeSelected(componentConfig.id):''"></div>
-      <div class="name" :class="operateTagClass" v-if="!preview" >
+      <div v-if="!preview" class="modal" @click="!preview?changeSelected(componentConfig.id):''" />
+      <div v-if="!preview" class="name" :class="operateTagClass">
         {{ componentConfig.name }}
       </div>
-      <div v-if="!preview" class="delete" :class="operateTagClass" @click="deleteComponent(componentConfig.id)">
+      <div v-if="!preview" class="delete" :class="operateTagClass"
+           @click="deleteComponent(componentConfig.id)"
+      >
         删除
       </div>
     </div>
-    <div v-show="componentConfig.data.component==='Dialog'" class="hideDialog" @click="dialogSwitch">{{dialogShow?'隐藏弹窗':'显示弹窗'}}</div>
+    <div v-show="componentConfig.data.component==='Dialog'" class="hideDialog" @click="dialogSwitch">
+      {{ dialogShow?'隐藏弹窗':'显示弹窗' }}
+    </div>
   </div>
 </template>
 <script>
 // import sersorsLoad from '@/sensors'
-import runEnv from "../utils/runEnv";
+import runEnv from '../utils/runEnv'
 import Carousel from '@/components/Carousel'
 import Dialog from '@/components/Dialog'
 import imgc from '@/components/imgc'
@@ -66,14 +70,6 @@ export default {
       default: false
     }
   },
-  watch: {
-    componentConfigProp: {
-      handler: function (value) {
-        this.componentConfig = value
-      },
-      deep: true
-    }
-  },
   data() {
     return {
       styleObject: {},
@@ -83,12 +79,20 @@ export default {
       dialogShow: true
     }
   },
+  watch: {
+    componentConfigProp: {
+      handler: function (value) {
+        this.componentConfig = value
+      },
+      deep: true
+    }
+  },
   computed: {
     ...mapState(['previewId']),
     operateTagClass() {
-      return this.componentConfig.data.component==='OnlineService'
+      return this.componentConfig.data.component === 'OnlineService'
         ? 'online-service-pos'
-        : (this.componentConfig.data.component=== 'FloatLayer' ? 'float-layer-pos' : '')
+        : (this.componentConfig.data.component === 'FloatLayer' ? 'float-layer-pos' : '')
     }
   },
   mounted() {
@@ -98,9 +102,9 @@ export default {
       color: this.componentConfig.textColor,
       borderRadius: this.componentConfig.radius + 'px',
       marginTop: this.componentConfig.marginTop + 'px',
-      '--selected-width': this.componentConfig.data.component==='OnlineService'
+      '--selected-width': this.componentConfig.data.component === 'OnlineService'
         ? '54px'
-        : (this.componentConfig.data.component=== 'FloatLayer' ? '100px' : '375px')
+        : (this.componentConfig.data.component === 'FloatLayer' ? '100px' : '375px')
     }
   },
   methods: {

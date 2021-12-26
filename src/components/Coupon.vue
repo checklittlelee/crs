@@ -5,7 +5,7 @@
     class="dialog-info"
   >
     <div class="coupon-list">
-      <div class="title" :class="coupons.headImage ? '' : 'hide'" >
+      <div class="title" :class="coupons.headImage ? '' : 'hide'">
         <van-image
           width="100%"
           height="100%"
@@ -14,19 +14,25 @@
       </div>
       <div class="content" :style="{background: `url(${coupons.middleImage}) no-repeat center center`}">
         <div class="coupon-item">
-          <div class="item-detail" v-for="coupon in coupons.couponList" :key="coupon.id">
+          <div v-for="coupon in coupons.couponList" :key="coupon.id" class="item-detail">
             <div class="detail-left">
-              <div class="head">{{coupon.name}}</div>
-              <div class="time">有效时间:{{coupon.effectiveType === 1 ? '领取后'+coupon.effectiveDay+'天内' :  coupon.effectiveStartTime+'-'+coupon.effectiveEndTime}}</div>
+              <div class="head">
+                {{ coupon.name }}
+              </div>
+              <div class="time">
+                有效时间:{{ coupon.effectiveType === 1 ? '领取后'+coupon.effectiveDay+'天内' : coupon.effectiveStartTime+'-'+coupon.effectiveEndTime }}
+              </div>
             </div>
             <div class="detail-right">
-              <div class="price" v-if="coupon.discountType !== 2">
-                <span class="unit">¥</span>{{coupon.discountAmount}}
+              <div v-if="coupon.discountType !== 2" class="price">
+                <span class="unit">¥</span>{{ coupon.discountAmount }}
               </div>
-              <div class="price" v-else>
-                {{coupon.couponDiscount}}<span class="unit">折</span>
+              <div v-else class="price">
+                {{ coupon.couponDiscount }}<span class="unit">折</span>
               </div>
-              <div class="reduce">{{coupon.discountType !== 3 ? "满"+coupon.fitAmount+"元可用" : "无门槛代金券"}}</div>
+              <div class="reduce">
+                {{ coupon.discountType !== 3 ? "满"+coupon.fitAmount+"元可用" : "无门槛代金券" }}
+              </div>
             </div>
           </div>
         </div>
@@ -88,9 +94,9 @@ export default {
       // };
       // Sensors.CouponpackageClick(sensorParam);
       // 校验token
-      const noLogin = UserInfo.goToLogin();
+      const noLogin = UserInfo.goToLogin()
       if (noLogin) {
-        return;
+        return
       }
       getActivityCoupon({ couponActivityId }).then(res => {
         this.$toast('领取优惠券成功')

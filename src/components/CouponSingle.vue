@@ -5,25 +5,37 @@
     class="dialog-info"
   >
     <div class="coupon">
-      <div class="title">领券</div>
+      <div class="title">
+        领券
+      </div>
       <div class="content">
         <div class="coupon-item">
           <div class="item-detail">
             <div class="detail-left">
-              <div class="price">{{couponSingle.discountType !== 2 ? '¥ '+couponSingle.discountAmount: couponSingle.couponDiscount+'折'}}</div>
-              <div class="reduce">{{couponSingle.discountType !== 3 ? "满"+couponSingle.fitAmount+"元可用" : "无门槛代金券"}}</div>
+              <div class="price">
+                {{ couponSingle.discountType !== 2 ? '¥ '+couponSingle.discountAmount: couponSingle.couponDiscount+'折' }}
+              </div>
+              <div class="reduce">
+                {{ couponSingle.discountType !== 3 ? "满"+couponSingle.fitAmount+"元可用" : "无门槛代金券" }}
+              </div>
             </div>
             <div class="detail-right">
-              <div class="head">{{couponSingle.name}}</div>
-              <div class="time">有效时间:{{couponSingle.effectiveType === 1 ? '领取后'+couponSingle.effectiveDay+'天内' :  couponSingle.effectiveStartTime+'-'+couponSingle.effectiveEndTime}}</div>
+              <div class="head">
+                {{ couponSingle.name }}
+              </div>
+              <div class="time">
+                有效时间:{{ couponSingle.effectiveType === 1 ? '领取后'+couponSingle.effectiveDay+'天内' : couponSingle.effectiveStartTime+'-'+couponSingle.effectiveEndTime }}
+              </div>
             </div>
           </div>
           <view class="item-desc">
-            {{couponSingle.discountType === 2 ? "最大优惠金额："+couponSingle.maxDiscountAmount+"元;": ''}}{{couponSingle.couponRangeDesc}}
+            {{ couponSingle.discountType === 2 ? "最大优惠金额："+couponSingle.maxDiscountAmount+"元;": '' }}{{ couponSingle.couponRangeDesc }}
           </view>
         </div>
       </div>
-      <div class="title bottom" @click="getCoupon">立即领取</div>
+      <div class="title bottom" @click="getCoupon">
+        立即领取
+      </div>
       <div class="close-info cancel">
         <van-icon name="close" @click="closeDialog" />
       </div>
@@ -41,7 +53,7 @@ export default {
   name: 'CouponSingle',
   data() {
     return {
-      
+
     }
   },
   computed: {
@@ -65,16 +77,16 @@ export default {
       this.setSingleCouponVisible(false)
     },
     getCoupon() {
-      const { couponSingle } = this;
+      const { couponSingle } = this
       const param = {
         couponRuleId: couponSingle.id,
         couponActivityId: couponSingle.couponActivityId
-      };
+      }
       // Sensors.ReceiveDiscount(couponSingle);
       // 校验token
-      const noLogin = UserInfo.goToLogin();
+      const noLogin = UserInfo.goToLogin()
       if (noLogin) {
-        return;
+        return
       }
       obtainCoupon(param)
         .then(() => {
@@ -84,7 +96,7 @@ export default {
           this.$toast(err.message)
         }).finally(() => {
           this.closeDialog()
-        });
+        })
     }
   }
 }

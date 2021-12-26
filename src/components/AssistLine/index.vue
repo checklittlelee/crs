@@ -1,9 +1,10 @@
 <template>
-  <div  :style="{
+  <div :style="{
     backgroundColor: property.backgroundColor ? property.backgroundColor : property.defBackgroundColor,
     height: property.height + 'px',
     padding: property.paddingVisible ? '16px' : 0
-  }">
+  }"
+  >
     <div
       :style="{
         color: property.borderColor ? property.borderColor : property.defBorderColor,
@@ -24,10 +25,9 @@ export default {
       type: Object,
       default: () => ({})
 
-
     }
   },
-  watch:{
+  watch: {
     property(val) {
     }
   }

@@ -3,12 +3,15 @@
     <van-notice-bar
       left-icon="volume-o"
       :background="styleModel.backgroundColor"
-      :scrollable='noticeList.length > 1'>
-      <template #left-icon v-if="iconUrl">
-        <img class="icon-img"  :src="iconUrl" alt="">
+      :scrollable="noticeList.length > 1"
+    >
+      <template v-if="iconUrl" #left-icon>
+        <img class="icon-img" :src="iconUrl" alt="">
       </template>
       <template #default>
-        <div v-for="(item,index) in noticeList" :key="index" class="noticeItem" @click="jumpLink(item.link)">
+        <div v-for="(item,index) in noticeList" :key="index" class="noticeItem"
+             @click="jumpLink(item.link)"
+        >
           <span :style="{...styleModel}">{{ item.text }}</span>
         </div>
       </template>
@@ -35,18 +38,6 @@ export default {
       formModel: {}
     }
   },
-  watch:{
-    property (val){
-      if(val){
-        this.setStyle(val)
-      }
-    }
-  },
-  methods:{
-    setStyle(val){
-      this.formModel = val
-    }
-  },
   computed: {
     styleModel() {
       return {
@@ -57,12 +48,24 @@ export default {
     noticeList() {
       return this.formModel.noticelist || []
     },
-    iconUrl(){
+    iconUrl() {
       return this.formModel.imageUrl
+    }
+  },
+  watch: {
+    property (val) {
+      if (val) {
+        this.setStyle(val)
+      }
     }
   },
   mounted() {
     this.formModel = this.property
+  },
+  methods: {
+    setStyle(val) {
+      this.formModel = val
+    }
   }
 }
 </script>
@@ -81,5 +84,3 @@ export default {
   }
 }
 </style>
-
-

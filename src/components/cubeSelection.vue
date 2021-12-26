@@ -22,14 +22,15 @@
             :key="index"
             class="magic-item"
             :class="['magic-' + (index + 1), { nodata: !item.imageUrl }]"
-
           >
             <div
               class="magic-img"
               :style="{ padding: property.imgMargin / 2 + 'px' }"
               @click="jumpLink(item.link)"
             >
-              <van-image width="100%" height="100%" :radius="property.radius + 'px'"  :src="item.imageUrl?item.imageUrl:defaultImg"/>
+              <van-image width="100%" height="100%" :radius="property.radius + 'px'"
+                         :src="item.imageUrl?item.imageUrl:defaultImg"
+              />
               <!-- <img v-if="item.imageUrl" :src="item.imageUrl"> -->
             </div>
           </div>
@@ -40,14 +41,15 @@
             <div
               class="magic-item"
               :class="['magic-1', { nodata: !property.imageList[0].imageUrl }]"
-
             >
               <div
                 class="magic-img"
                 :style="{ padding: property.imgMargin / 2 + 'px' }"
                 @click="jumpLink(property.imageList[0].link)"
               >
-                <van-image width="100%" height="100%" :radius="property.radius + 'px'"  :src="property.imageList[0].imageUrl?property.imageList[0].imageUrl:defaultImg"/>
+                <van-image width="100%" height="100%" :radius="property.radius + 'px'"
+                           :src="property.imageList[0].imageUrl?property.imageList[0].imageUrl:defaultImg"
+                />
                 <!-- <img
                   v-if="property.imageList[0].imageUrl"
                   :src="property.imageList[0].imageUrl"
@@ -62,14 +64,15 @@
               :key="index"
               class="magic-item"
               :class="['magic-' + (index + 1), { nodata: !item.imageUrl }]"
-
             >
               <div
                 class="magic-img"
                 :style="{ padding: property.imgMargin / 2 + 'px' }"
                 @click="jumpLink(item.link)"
               >
-                <van-image width="100%" height="100%" :radius="property.radius + 'px'"  :src="item.imageUrl?item.imageUrl:defaultImg"/>
+                <van-image width="100%" height="100%" :radius="property.radius + 'px'"
+                           :src="item.imageUrl?item.imageUrl:defaultImg"
+                />
                 <!-- <img v-if="item.imageUrl" :src="item.imageUrl"> -->
               </div>
             </div>
@@ -81,14 +84,15 @@
             <div
               class="magic-item"
               :class="['magic-1', { nodata: !property.imageList[0].imageUrl }]"
-
             >
               <div
                 class="magic-img"
                 :style="{ padding: property.imgMargin / 2 + 'px' }"
                 @click="jumpLink(property.imageList[0].link)"
               >
-                <van-image width="100%" height="100%" :radius="property.radius + 'px'"  :src="property.imageList[0].imageUrl?property.imageList[0].imageUrl:defaultImg"/>
+                <van-image width="100%" height="100%" :radius="property.radius + 'px'"
+                           :src="property.imageList[0].imageUrl?property.imageList[0].imageUrl:defaultImg"
+                />
                 <!-- <img
                   v-if="property.imageList[0].imageUrl"
                   :src="property.imageList[0].imageUrl"
@@ -103,14 +107,15 @@
               :key="index"
               class="magic-item"
               :class="['magic-' + (index + 1), { nodata: !item.imageUrl }]"
-
             >
               <div
                 class="magic-img"
                 :style="{ padding: property.imgMargin / 2 + 'px' }"
                 @click="jumpLink(item.link)"
               >
-                <van-image width="100%" height="100%" :radius="property.radius + 'px'"  :src="item.imageUrl?item.imageUrl:defaultImg"/>
+                <van-image width="100%" height="100%" :radius="property.radius + 'px'"
+                           :src="item.imageUrl?item.imageUrl:defaultImg"
+                />
                 <!-- <img v-if="item.imageUrl" :src="item.imageUrl"> -->
               </div>
             </div>
@@ -121,14 +126,15 @@
                 :key="index"
                 class="magic-item"
                 :class="['magic-' + (index + 1), { nodata: !item.imageUrl }]"
-
               >
                 <div
                   class="magic-img"
                   :style="{ padding: property.imgMargin / 2 + 'px' }"
                   @click="jumpLink(item.link)"
                 >
-                  <van-image width="100%" height="100%" :radius="property.radius + 'px'"  :src="item.imageUrl?item.imageUrl:defaultImg"/>
+                  <van-image width="100%" height="100%" :radius="property.radius + 'px'"
+                             :src="item.imageUrl?item.imageUrl:defaultImg"
+                  />
                   <!-- <img v-if="item.imageUrl" :src="item.imageUrl"> -->
                 </div>
               </div>
@@ -137,7 +143,7 @@
         </template>
       </div>
       <div v-else>
-        <van-image width="100%" height="200" src=""/>
+        <van-image width="100%" height="200" src="" />
       </div>
     </div>
   </div>
@@ -162,11 +168,11 @@ export default {
       defaultImg
     }
   },
-  methods: {
-
-  },
   mounted() {
     console.log(this.property, 'property')
+  },
+  methods: {
+
   }
 }
 </script>

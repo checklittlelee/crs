@@ -5,9 +5,9 @@
         <!-- 容器 -->
         <!-- 遍历行  -->
         <div
-          class="list-wrapper"
           v-for="(row, rowIndex) in list"
           :key="rowIndex"
+          class="list-wrapper"
         >
           <!-- 遍历单个 -->
           <div
@@ -15,7 +15,7 @@
             :key="index"
             ref="item"
             class="item"
-            :style='cleanMarginBottom(rowIndex)'
+            :style="cleanMarginBottom(rowIndex)"
             @click="jumpLink(item.link)"
           >
             <template v-if="item">
@@ -25,21 +25,21 @@
                   class="img-el"
                   :style="{ ...imgComputedStyle }"
                   :src="item.imageUrl ? item.imageUrl : defaultImg"
-                />
+                >
               </div>
               <div class="text">
                 {{ item.text }}
               </div>
             </template>
             <!-- flex 补位 -->
-            <div v-else class="empty-item"></div>
+            <div v-else class="empty-item" />
           </div>
         </div>
       </template>
       <!-- 一行排1个 -->
       <div
-        class="list-container-for-single-line"
         v-if="formModel.lineNumber === 1"
+        class="list-container-for-single-line"
       >
         <div
           v-for="(item, index) in formModel.imageList"
@@ -54,7 +54,7 @@
               class="img-el"
               :style="{ ...imgComputedStyle }"
               :src="item.imageUrl ? item.imageUrl : defaultImg"
-            />
+            >
           </div>
           <div class="text">
             {{ item.text }}
@@ -93,7 +93,7 @@ export default {
       line: 1,
       /** 一行有几个 */
       oneLineNumber: 0,
-      /**默认图片 */
+      /** 默认图片 */
       defaultImg
     }
   },
@@ -128,9 +128,6 @@ export default {
     }
 
   },
-  created () {
-    this.init()
-  },
   watch: {
     property: {
       deep: true,
@@ -138,6 +135,9 @@ export default {
         this.init()
       }
     }
+  },
+  created () {
+    this.init()
   },
   mounted () {
     // 第一个版本的代码
@@ -156,7 +156,7 @@ export default {
       let len = Math.ceil(imageList.length / lineNumber)
 
       for (var i = 0; i < imageList.length; i += lineNumber) {
-        list.push(imageList.slice(i, i + lineNumber));
+        list.push(imageList.slice(i, i + lineNumber))
       }
 
       // 最后一个做补齐处理
@@ -266,7 +266,7 @@ export default {
      * 如果是最后一行，则元素不需要加 margin-bottom:20
      */
     cleanMarginBottom(index) {
-      if (index === this.list.length-1) {
+      if (index === this.list.length - 1) {
         return {
           marginBottom: 0
         }

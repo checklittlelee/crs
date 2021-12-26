@@ -4,15 +4,15 @@
     <div class="test-form-data">
       <div>
         容器上下padding <input v-model.number="formModel.columnPadding"
-          min="0"
-          type="number"
+                           min="0"
+                           type="number"
         >
       </div>
       <div>
         容器左右padding <input v-model.number="formModel.rowPadding"
-          min="0"
-          type="number"
-          @input="updateRowPadding"
+                           min="0"
+                           type="number"
+                           @input="updateRowPadding"
         >
       </div>
       <div>
@@ -26,36 +26,36 @@
       </div>
       <div>
         单行 <input v-model="formModel.isMultiline"
-          type="radio"
-          name="1"
-          :value="1"
+                  type="radio"
+                  name="1"
+                  :value="1"
         >
         多行 <input v-model="formModel.isMultiline"
-          type="radio"
-          name="1"
-          :value="2"
+                  type="radio"
+                  name="1"
+                  :value="2"
         >
       </div>
       <div>
         是否横向滚动
         <div>
           否  : <input v-model="formModel.isScroll"
-            type="radio"
-            name="scroll"
-            :value="false"
+                      type="radio"
+                      name="scroll"
+                      :value="false"
           >
           是:<input v-model="formModel.isScroll"
-            type="radio"
-            name="scroll"
-            :value="true"
+                   type="radio"
+                   name="scroll"
+                   :value="true"
           >
         </div>
       </div>
       <div>
         一行放置几个 <input v-model="formModel.lineNumber"
-          type="number"
-          max="8"
-          @change="updateLineNumber"
+                      type="number"
+                      max="8"
+                      @change="updateLineNumber"
         >
       </div>
     </div>
