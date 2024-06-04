@@ -1,7 +1,7 @@
 import store from '../store'
 class Postmessage {
   constructor() {
-    this.targetOrigin = process.env.NODE_ENV === 'production' ? window.location.origin : 'http://127.0.0.1:3001'
+    this.targetOrigin = process.env.NODE_ENV === 'production' ? window.location.origin : 'http://127.0.0.1:3011'
     this.postMessageType = {
       pageHeightChange: 'pageHeightChange',
       pageChange: 'pageChange',

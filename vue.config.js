@@ -1,9 +1,10 @@
 module.exports = {
     publicPath: '/crs/',
+    lintOnSave: false,
     devServer: {
         host: '127.0.0.1',
-        port: 3002,
-        open: true,
+        port: 3010,
+        open: false,
         // proxy: {
         //   '^/api': {
         //     target: 'https://erp-newdev.fuchuang.com',
