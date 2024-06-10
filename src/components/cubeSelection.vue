@@ -1,20 +1,25 @@
+<!-- 7. 魔方组件 -->
 <template>
   <div class="magic-wrap">
     <div
       :style="{
         paddingLeft: property.pageMargin + 'px',
-        paddingRight: property.pageMargin + 'px'
+        paddingRight: property.pageMargin + 'px',
       }"
     >
-      <div v-if="property.imageList.length" class="magic-box" :class="property.template">
+      <div
+        v-if="property.imageList.length"
+        class="magic-box"
+        :class="property.template"
+      >
         <!-- 模板布局：一行2个、一行3个、一行4个、二左二右、一上二下 -->
         <template
           v-if="
             property.template == 'oneLine2' ||
-              property.template == 'oneLine3' ||
-              property.template == 'oneLine4' ||
-              property.template == 'left2right2' ||
-              property.template == 'top1bottom2'
+            property.template == 'oneLine3' ||
+            property.template == 'oneLine4' ||
+            property.template == 'left2right2' ||
+            property.template == 'top1bottom2'
           "
         >
           <div
@@ -28,8 +33,11 @@
               :style="{ padding: property.imgMargin / 2 + 'px' }"
               @click="jumpLink(item.link)"
             >
-              <van-image width="100%" height="100%" :radius="property.radius + 'px'"
-                         :src="item.imageUrl?item.imageUrl:defaultImg"
+              <van-image
+                width="100%"
+                height="100%"
+                :radius="property.radius + 'px'"
+                :src="item.imageUrl ? item.imageUrl : defaultImg"
               />
               <!-- <img v-if="item.imageUrl" :src="item.imageUrl"> -->
             </div>
@@ -47,8 +55,15 @@
                 :style="{ padding: property.imgMargin / 2 + 'px' }"
                 @click="jumpLink(property.imageList[0].link)"
               >
-                <van-image width="100%" height="100%" :radius="property.radius + 'px'"
-                           :src="property.imageList[0].imageUrl?property.imageList[0].imageUrl:defaultImg"
+                <van-image
+                  width="100%"
+                  height="100%"
+                  :radius="property.radius + 'px'"
+                  :src="
+                    property.imageList[0].imageUrl
+                      ? property.imageList[0].imageUrl
+                      : defaultImg
+                  "
                 />
                 <!-- <img
                   v-if="property.imageList[0].imageUrl"
@@ -70,8 +85,11 @@
                 :style="{ padding: property.imgMargin / 2 + 'px' }"
                 @click="jumpLink(item.link)"
               >
-                <van-image width="100%" height="100%" :radius="property.radius + 'px'"
-                           :src="item.imageUrl?item.imageUrl:defaultImg"
+                <van-image
+                  width="100%"
+                  height="100%"
+                  :radius="property.radius + 'px'"
+                  :src="item.imageUrl ? item.imageUrl : defaultImg"
                 />
                 <!-- <img v-if="item.imageUrl" :src="item.imageUrl"> -->
               </div>
@@ -90,8 +108,15 @@
                 :style="{ padding: property.imgMargin / 2 + 'px' }"
                 @click="jumpLink(property.imageList[0].link)"
               >
-                <van-image width="100%" height="100%" :radius="property.radius + 'px'"
-                           :src="property.imageList[0].imageUrl?property.imageList[0].imageUrl:defaultImg"
+                <van-image
+                  width="100%"
+                  height="100%"
+                  :radius="property.radius + 'px'"
+                  :src="
+                    property.imageList[0].imageUrl
+                      ? property.imageList[0].imageUrl
+                      : defaultImg
+                  "
                 />
                 <!-- <img
                   v-if="property.imageList[0].imageUrl"
@@ -113,8 +138,11 @@
                 :style="{ padding: property.imgMargin / 2 + 'px' }"
                 @click="jumpLink(item.link)"
               >
-                <van-image width="100%" height="100%" :radius="property.radius + 'px'"
-                           :src="item.imageUrl?item.imageUrl:defaultImg"
+                <van-image
+                  width="100%"
+                  height="100%"
+                  :radius="property.radius + 'px'"
+                  :src="item.imageUrl ? item.imageUrl : defaultImg"
                 />
                 <!-- <img v-if="item.imageUrl" :src="item.imageUrl"> -->
               </div>
@@ -132,8 +160,11 @@
                   :style="{ padding: property.imgMargin / 2 + 'px' }"
                   @click="jumpLink(item.link)"
                 >
-                  <van-image width="100%" height="100%" :radius="property.radius + 'px'"
-                             :src="item.imageUrl?item.imageUrl:defaultImg"
+                  <van-image
+                    width="100%"
+                    height="100%"
+                    :radius="property.radius + 'px'"
+                    :src="item.imageUrl ? item.imageUrl : defaultImg"
                   />
                   <!-- <img v-if="item.imageUrl" :src="item.imageUrl"> -->
                 </div>
@@ -149,31 +180,29 @@
   </div>
 </template>
 <script>
-import JumpLink from '@/mixin/jumpLink'
-import defaultImg from '../assets/block-img.png'
+import JumpLink from "@/mixin/jumpLink"
+import defaultImg from "../assets/block-img.png"
 
 export default {
-  name: 'CubeSelection',
+  name: "CubeSelection",
   mixins: [JumpLink],
   props: {
     property: {
       type: Object,
       default: () => {
         return {}
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      defaultImg
+      defaultImg,
     }
   },
   mounted() {
-    console.log(this.property, 'property')
+    console.log(this.property, "property")
   },
-  methods: {
-
-  }
+  methods: {},
 }
 </script>
 <style scoped>

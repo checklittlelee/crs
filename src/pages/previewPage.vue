@@ -1,9 +1,7 @@
+<!-- 预览页面 与 在cms manage编辑详情页里看到的是不一样的，详情中可以拖拽通信，在预览中，是纯静态的渲染 -->
 <template>
   <div id="wrap" class="wrap">
-    <div
-      class="main"
-      :style="pageStyle"
-    >
+    <div class="main" :style="pageStyle">
       <div v-for="element in pageData.componentList" :key="element.id">
         <component
           :is="element.data.component"
@@ -20,34 +18,34 @@
 </template>
 
 <script>
-import Coupon from '@/components/Coupon'
-import CouponSingle from '@/components/CouponSingle'
-import { getH5PageJson } from '@/apis/preview'
-import UserInfo from '@/utils/getUserInfo'
-import vehicle from '@/utils/vehicle'
-import VConsole from 'vconsole'
+import Coupon from "@/components/Coupon"
+import CouponSingle from "@/components/CouponSingle"
+import { getH5PageJson } from "@/apis/preview"
+import UserInfo from "@/utils/getUserInfo"
+import vehicle from "@/utils/vehicle"
+import VConsole from "vconsole"
 
-import Carousel from '@/components/Carousel'
-import Dialog from '@/components/Dialog'
-import imgc from '@/components/imgc'
-import AssistLine from '@/components/AssistLine'
-import FloatLayer from '@/components/FloatLayer'
-import OnlineService from '@/components/OnlineService'
-import Slider from '@/components/Slider'
-import CubeSelection from '@/components/cubeSelection'
-import ImageNav from '@/components/image-nav'
-import product from '@/components/product'
-import Notice from '@/components/notice'
-import RichText from '@/components/richText'
-var wx = require('weixin-js-sdk')
+import Carousel from "@/components/Carousel"
+import Dialog from "@/components/Dialog"
+import imgc from "@/components/imgc"
+import AssistLine from "@/components/AssistLine"
+import FloatLayer from "@/components/FloatLayer"
+import OnlineService from "@/components/OnlineService"
+import Slider from "@/components/Slider"
+import CubeSelection from "@/components/cubeSelection"
+import ImageNav from "@/components/image-nav"
+import product from "@/components/product"
+import Notice from "@/components/notice"
+import RichText from "@/components/richText"
+var wx = require("weixin-js-sdk")
 
 // 开发环境添加console插件
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   const vConsole = new VConsole()
 }
 
 export default {
-  name: 'Page',
+  name: "Page",
   components: {
     Coupon,
     CouponSingle,
@@ -62,11 +60,11 @@ export default {
     ImageNav,
     product,
     Notice,
-    RichText
+    RichText,
   },
   data() {
     return {
-      pageData: {}
+      pageData: {},
     }
   },
   computed: {
@@ -74,9 +72,9 @@ export default {
       return {
         backgroundColor: this.pageData.backgroundColor,
         backgroundImage: `url(${this.pageData.backgroundImage})`,
-        backgroundPosition: `center ${this.pageData.backgroundPosition}`
+        backgroundPosition: `center ${this.pageData.backgroundPosition}`,
       }
-    }
+    },
   },
   mounted() {
     // 获取页面id
@@ -85,7 +83,7 @@ export default {
     let data = this.$route.query.data
     if (data) {
       data = JSON.parse(data)
-      console.log('H5活动页面加载，传入参数为', data)
+      console.log("H5活动页面加载，传入参数为", data)
       UserInfo.SetLocalUserLoginStatus(data.isLogin)
       UserInfo.SetToken(data.token)
       UserInfo.SetCanToLoginStatus(true)
@@ -96,7 +94,7 @@ export default {
       vehicle._saveCarToLocal(data.myCar)
     }
     // 获取页面数据
-    getH5PageJson({id}).then(res => {
+    getH5PageJson({ id }).then((res) => {
       document.title = res.data.name // 小程序中web-view显示页面名称
       this.pageData = res.data
       // 如果有自定义分享参数，则将分享参数传递到h5
@@ -104,9 +102,9 @@ export default {
       if (shareDesc || shareImage) {
         const data = {
           shareDesc,
-          shareImage
+          shareImage,
         }
-        wx.miniProgram.postMessage({data})
+        wx.miniProgram.postMessage({ data })
       }
     })
   },
@@ -114,23 +112,23 @@ export default {
     styleObject(item) {
       return {
         color: item.textColor,
-        borderRadius: item.radius + 'px',
-        marginTop: item.marginTop + 'px'
+        borderRadius: item.radius + "px",
+        marginTop: item.marginTop + "px",
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
-.wrap{
+.wrap {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
-.main{
+.main {
   position: relative;
   width: 375px;
 }

@@ -1,15 +1,13 @@
+<!-- 2. Dialog组件封装 -->
 <template>
-  <van-dialog v-if="isDisplay"
-              v-model="isDisplay"
-              :show-confirm-button="false"
-              class="dialog-info"
+  <van-dialog
+    v-if="isDisplay"
+    v-model="isDisplay"
+    :show-confirm-button="false"
+    class="dialog-info"
   >
     <div class="img-info" @click="jumpLink(link)">
-      <van-image v-if="imageUrl"
-                 width="100%"
-                 height="100%"
-                 :src="imageUrl"
-      />
+      <van-image v-if="imageUrl" width="100%" height="100%" :src="imageUrl" />
     </div>
     <div class="close-info">
       <van-icon name="close" @click="closeDialog()" />
@@ -17,37 +15,37 @@
   </van-dialog>
 </template>
 <script>
-import JumpLink from '@/mixin/jumpLink'
+import JumpLink from "@/mixin/jumpLink"
 
 export default {
-  name: 'Dialog',
+  name: "Dialog",
   mixins: [JumpLink],
   props: {
     property: {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     runEnv: {
       type: String,
-      default: 'dev'
-    }
+      default: "dev",
+    },
   },
   data() {
     return {
       isDisplay: false,
-      imageUrl: '',
-      link: {}
+      imageUrl: "",
+      link: {},
     }
   },
   watch: {
     property: {
       immediate: true, // 这句重要
-      handler (val) {
+      handler(val) {
         this.isShow()
-      }
-    }
+      },
+    },
   },
   mounted() {
     this.isShow()
@@ -61,17 +59,21 @@ export default {
       const time = {
         year: date.getFullYear(),
         month: date.getMonth() + 1,
-        day: date.getDate()
+        day: date.getDate(),
       }
-      const timeStr = time.year + (time.month > 9 ? time.month : '0' + time.month) + time.day
-      if (this.property.timing === 'every') {
+      const timeStr =
+        time.year + (time.month > 9 ? time.month : "0" + time.month) + time.day
+      if (this.property.timing === "every") {
         this.isDisplay = true
       } else {
-        if (this.runEnv === 'dev') { // dev 为pc配置环境,preview 为pc预览环境,prod 为小程序环境
+        if (this.runEnv === "dev") {
+          // dev 为pc配置环境,preview 为pc预览环境,prod 为小程序环境
           this.isDisplay = true
         } else {
-          const value = window.localStorage.getItem('Dialog_' + this.property.id)
-          if (this.property.timing === 'once') {
+          const value = window.localStorage.getItem(
+            "Dialog_" + this.property.id,
+          )
+          if (this.property.timing === "once") {
             if (!value) {
               this.isDisplay = true
             } else {
@@ -86,14 +88,14 @@ export default {
           }
         }
       }
-      window.localStorage.setItem('Dialog_' + this.property.id, timeStr)
+      window.localStorage.setItem("Dialog_" + this.property.id, timeStr)
     },
-    closeDialog () {
-      if (!document.querySelector('.draggable')) {
+    closeDialog() {
+      if (!document.querySelector(".draggable")) {
         this.isDisplay = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 <style>
@@ -101,24 +103,24 @@ export default {
   border: 2px solid #155bd4;
   cursor: move;
 }
-.dialog-info{
+.dialog-info {
   position: fixed !important;
   background: transparent;
   top: 50%;
 }
-.dialog-info .van-image{
+.dialog-info .van-image {
   display: block;
 }
 </style>
 <style scoped>
-.img-info{
+.img-info {
   border-radius: 16px;
   /* background: #fff; */
   max-height: 600px;
   min-height: 267px;
   overflow: auto;
 }
-.close-info{
+.close-info {
   text-align: center;
   margin-top: 8px;
   color: #fff;

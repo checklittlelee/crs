@@ -1,57 +1,58 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import home from '../pages/home'
+import Vue from "vue"
+import Router from "vue-router"
+import home from "../pages/home"
 
-Vue.use(Router)
+Vue.use(Router) // 全局注入
 
+// 页面组成：配置页 + 预览页 + 活动页
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: home,
-      redirect: '/page'
+      redirect: "/page",
     },
     {
-      path: '/page',
-      name: 'page',
+      path: "/page",
+      name: "page",
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       meta: {
-        title: '配置页'
+        title: "配置页",
       },
       component: () =>
-        import(/* webpackChunkName: "about" */ '../pages/page.vue')
+        import(/* webpackChunkName: "about" */ "../pages/page.vue"),
     },
     // cms 预览页面
     {
-      path: '/pagePreiview',
-      name: 'pagePreiview',
+      path: "/pagePreiview",
+      name: "pagePreiview",
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       meta: {
-        title: '预览页'
+        title: "预览页",
       },
       component: () =>
-          import(/* webpackChunkName: "about" */ '../pages/previewPage.vue'),
+        import(/* webpackChunkName: "about" */ "../pages/previewPage.vue"),
       // meta: {
       //   preiview: true // 该字段为true时，预览页面不触发跳转逻辑
       // }
     },
     // 小程序正式嵌入页面
     {
-      path: '/activity',
-      name: 'activity',
+      path: "/activity",
+      name: "activity",
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       meta: {
-        title: '活动页'
+        title: "活动页",
       },
       component: () =>
-          import(/* webpackChunkName: "about" */ '../pages/previewPage.vue')
-    }
-  ]
+        import(/* webpackChunkName: "about" */ "../pages/previewPage.vue"),
+    },
+  ],
 })

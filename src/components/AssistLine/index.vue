@@ -1,15 +1,21 @@
+<!-- 3. 辅助线组件 -->
 <template>
-  <div :style="{
-    backgroundColor: property.backgroundColor ? property.backgroundColor : property.defBackgroundColor,
-    height: property.height + 'px',
-    padding: property.paddingVisible ? '16px' : 0
-  }"
+  <div
+    :style="{
+      backgroundColor: property.backgroundColor
+        ? property.backgroundColor
+        : property.defBackgroundColor,
+      height: property.height + 'px',
+      padding: property.paddingVisible ? '16px' : 0,
+    }"
   >
     <div
       :style="{
-        color: property.borderColor ? property.borderColor : property.defBorderColor,
+        color: property.borderColor
+          ? property.borderColor
+          : property.defBorderColor,
         borderBottom: '1px',
-        borderBottomStyle:!property.type ? 'none': property.borderStyle,
+        borderBottomStyle: !property.type ? 'none' : property.borderStyle,
         lineHeight: property.height + 'px',
         position: 'relative',
         top: '50%',
@@ -19,17 +25,15 @@
 </template>
 <script>
 export default {
-  name: 'AssistLine',
+  name: "AssistLine",
   props: {
     property: {
       type: Object,
-      default: () => ({})
-
-    }
+      default: () => ({}),
+    },
   },
   watch: {
-    property(val) {
-    }
-  }
+    property(val) {},
+  },
 }
 </script>

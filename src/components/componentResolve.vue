@@ -1,49 +1,73 @@
 <template>
   <div style="position: relative">
-    <div v-show="dialogShow" :class="[componentConfig.data.component==='Dialog'?(componentConfig.id === previewId?'componentDialog selected':'componentDialog'):'component']" @click="sensorsTest">
-      <div @click="!preview?changeSelected(componentConfig.id):''">
+    <div
+      v-show="dialogShow"
+      :class="[
+        componentConfig.data.component === 'Dialog'
+          ? componentConfig.id === previewId
+            ? 'componentDialog selected'
+            : 'componentDialog'
+          : 'component',
+      ]"
+      @click="sensorsTest"
+    >
+      <div @click="!preview ? changeSelected(componentConfig.id) : ''">
         <component
           :is="componentConfig.data.component"
           :property="componentConfig.data"
           :style="styleObject"
-          :class="{componentDom: true,selected: componentConfig.id === previewId}"
+          :class="{
+            componentDom: true,
+            selected: componentConfig.id === previewId,
+          }"
           :sensors="sensors"
           :run-env="runEnv"
         />
       </div>
-      <div v-if="!preview" class="modal" @click="!preview?changeSelected(componentConfig.id):''" />
+      <div
+        v-if="!preview"
+        class="modal"
+        @click="!preview ? changeSelected(componentConfig.id) : ''"
+      />
       <div v-if="!preview" class="name" :class="operateTagClass">
         {{ componentConfig.name }}
       </div>
-      <div v-if="!preview" class="delete" :class="operateTagClass"
-           @click="deleteComponent(componentConfig.id)"
+      <div
+        v-if="!preview"
+        class="delete"
+        :class="operateTagClass"
+        @click="deleteComponent(componentConfig.id)"
       >
         删除
       </div>
     </div>
-    <div v-show="componentConfig.data.component==='Dialog'" class="hideDialog" @click="dialogSwitch">
-      {{ dialogShow?'隐藏弹窗':'显示弹窗' }}
+    <div
+      v-show="componentConfig.data.component === 'Dialog'"
+      class="hideDialog"
+      @click="dialogSwitch"
+    >
+      {{ dialogShow ? "隐藏弹窗" : "显示弹窗" }}
     </div>
   </div>
 </template>
 <script>
 // import sersorsLoad from '@/sensors'
-import runEnv from '../utils/runEnv'
-import Carousel from '@/components/Carousel'
-import Dialog from '@/components/Dialog'
-import imgc from '@/components/imgc'
-import AssistLine from '@/components/AssistLine'
-import FloatLayer from '@/components/FloatLayer'
-import OnlineService from '@/components/OnlineService'
-import Slider from '@/components/Slider'
-import CubeSelection from '@/components/cubeSelection'
-import ImageNav from '@/components/image-nav'
-import { mapState, mapMutations } from 'vuex'
-import product from '@/components/product'
-import Notice from '@/components/notice'
-import RichText from '@/components/richText'
+import { mapState, mapMutations } from "vuex"
+import runEnv from "../utils/runEnv"
+import Carousel from "@/components/Carousel"
+import Dialog from "@/components/Dialog"
+import imgc from "@/components/imgc"
+import AssistLine from "@/components/AssistLine"
+import FloatLayer from "@/components/FloatLayer"
+import OnlineService from "@/components/OnlineService"
+import Slider from "@/components/Slider"
+import CubeSelection from "@/components/cubeSelection"
+import ImageNav from "@/components/image-nav"
+import product from "@/components/product"
+import Notice from "@/components/notice"
+import RichText from "@/components/richText"
 export default {
-  name: 'ComponentResolve',
+  name: "ComponentResolve",
   components: {
     Carousel,
     Dialog,
@@ -56,27 +80,27 @@ export default {
     ImageNav,
     product,
     Notice,
-    RichText
+    RichText,
   },
   props: {
     componentConfigProp: {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     preview: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       styleObject: {},
       componentConfig: JSON.parse(JSON.stringify(this.componentConfigProp)),
-      runEnv: 'dev',
+      runEnv: "dev",
       sensors: null,
-      dialogShow: true
+      dialogShow: true,
     }
   },
   watch: {
@@ -84,40 +108,44 @@ export default {
       handler: function (value) {
         this.componentConfig = value
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   computed: {
-    ...mapState(['previewId']),
+    ...mapState(["previewId"]),
     operateTagClass() {
-      return this.componentConfig.data.component === 'OnlineService'
-        ? 'online-service-pos'
-        : (this.componentConfig.data.component === 'FloatLayer' ? 'float-layer-pos' : '')
-    }
+      return this.componentConfig.data.component === "OnlineService"
+        ? "online-service-pos"
+        : this.componentConfig.data.component === "FloatLayer"
+        ? "float-layer-pos"
+        : ""
+    },
   },
   mounted() {
     this.getRunEnv()
     // this.sensors = new sersorsLoad(this)
     this.styleObject = {
       color: this.componentConfig.textColor,
-      borderRadius: this.componentConfig.radius + 'px',
-      marginTop: this.componentConfig.marginTop + 'px',
-      '--selected-width': this.componentConfig.data.component === 'OnlineService'
-        ? '54px'
-        : (this.componentConfig.data.component === 'FloatLayer' ? '100px' : '375px')
+      borderRadius: this.componentConfig.radius + "px",
+      marginTop: this.componentConfig.marginTop + "px",
+      "--selected-width":
+        this.componentConfig.data.component === "OnlineService"
+          ? "54px"
+          : this.componentConfig.data.component === "FloatLayer"
+          ? "100px"
+          : "375px",
     }
   },
   methods: {
-    ...mapMutations([
-      'changeSelected',
-      'deleteComponent'
-    ]),
+    ...mapMutations(["changeSelected", "deleteComponent"]),
     getRunEnv() {
-      runEnv().then(res => {
-        this.env = res.data
-      }).catch(err => {
-        console.log(err)
-      })
+      runEnv()
+        .then((res) => {
+          this.env = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     sensorsTest() {
       // this.sensors.track('clickWrap', {
@@ -127,33 +155,34 @@ export default {
     // 弹窗显示和隐藏逻辑切换
     dialogSwitch() {
       this.dialogShow = !this.dialogShow
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
 :root {
   --selected-width: 54px;
-
 }
-.component{
+.component {
   position: relative;
   cursor: move;
 }
-.componentDialog{
+.componentDialog {
   position: fixed;
   top: 0;
   z-index: 99;
 }
-.componentDialog .name,.componentDialog .delete{
+.componentDialog .name,
+.componentDialog .delete {
   top: 30px;
 }
 .componentDialog .componentDom.selected:before {
   left: 0;
   border: none;
 }
-.name, .delete{
+.name,
+.delete {
   font-size: 14px;
   color: #333;
   padding: 4px 12px;
@@ -170,27 +199,29 @@ export default {
   color: #323232;
 }
 
-.name, .delete{
+.name,
+.delete {
   left: 380px;
   top: 0px;
 }
 .delete {
   display: none;
 }
-.components:hover .name{
+.components:hover .name {
   display: none;
 }
-.components:hover .delete{
+.components:hover .delete {
   display: block;
 }
-.name:hover +.delete {
+.name:hover + .delete {
   display: block;
 }
 /* .delete:hover +.name {
   display: none;
 } */
-.name:before, .delete:before{
-  content: '';
+.name:before,
+.delete:before {
+  content: "";
   display: inline-block;
   width: 0px;
   height: 0px;
@@ -200,13 +231,13 @@ export default {
   left: -8px;
   top: 8px;
 }
-.componentDom{
+.componentDom {
   min-height: 20px;
   user-select: none;
   position: relative;
 }
 
-.selected:before{
+.selected:before {
   content: "";
   position: absolute;
   width: var(--selected-width);
@@ -219,30 +250,31 @@ export default {
   cursor: move;
   box-sizing: content-box;
 }
-.componentDom.selected:before{
+.componentDom.selected:before {
   left: -2px;
   border: 2px solid #155bd4;
 }
 
-.modal:hover{
+.modal:hover {
   cursor: move;
   border: 1px dashed #155bd4;
 }
 
-.float-layer-pos, .online-service-pos {
+.float-layer-pos,
+.online-service-pos {
   position: fixed;
-  top: unset
+  top: unset;
 }
 
 .float-layer-pos {
-  bottom: 180px
+  bottom: 180px;
 }
 
 .online-service-pos {
-  bottom: 60px
+  bottom: 60px;
 }
 
-.hideDialog{
+.hideDialog {
   position: fixed;
   right: 380px;
   top: 0px;
@@ -259,8 +291,8 @@ export default {
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
   color: #323232;
 }
-.hideDialog:before{
-  content: '';
+.hideDialog:before {
+  content: "";
   display: inline-block;
   width: 0px;
   height: 0px;
